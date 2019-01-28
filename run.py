@@ -14,10 +14,15 @@ def save_users(user):
     '''
     user.save_user()
 
-def del_contact(contact):
+def del_user(user):
     '''
-    Function to delete a contact
+    Function to delete a user
     '''
-    contact.delete_contact()
+    contact.delete_user()
 
+def find_user(number):
+    '''
+    Function that finds a user by number and returns the user
+    '''
+    return User.find_by_number(number)
 
