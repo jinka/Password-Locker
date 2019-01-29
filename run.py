@@ -4,6 +4,8 @@ from user import Credentials
 import getpass
 import os
 import shutil
+import string
+import random
 os.system('setterm -background white -foreground black -store')
 
 def create_user(user_name,user_password,user_full_name,phone_number,email):
@@ -70,6 +72,8 @@ def display_accounts():
     '''
     return Credentials.display_accounts()
 
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 """
 MAIN FUNCTION
@@ -124,7 +128,7 @@ while True:
         Open User File as read only and append new authantication
         """
         user_get_info_file = open("user_info.txt","r")
-        print("Store Old Credentials => st - Automatic Password Generator => ag - Custom Password Generator => cg Display accounts => dc Delete Credentials => rm Exit App q")
+        # print("Store Old Credentials => st - Automatic Password Generator => ag - Custom Password Generator => cg Display accounts => dc Delete Credentials => rm Exit App q")
     elif options == 'st':
         print("stroring New Credentials")
 
@@ -140,7 +144,11 @@ while True:
         print(f"New User {user_account_name} {user_account_user} Created")
 
     elif options == 'ag':
-        print("Generate automatic password")
+        print("Generating password for you")
+        autoPassword=id_generator()
+        print({user_account_user})
+        print(autoPassword)
+
     elif options == 'cg':
         print("Put own custom password")
     elif options == 'dc':
