@@ -45,7 +45,7 @@ def display_users():
 # MAIN FUNCTION
 def main():
 
-    print("Welcome to your Password Locker App.")
+    print("Welcome to Password Locker App.")
 
 while True:
     print("*"*100)
@@ -81,10 +81,13 @@ while True:
         print(new_user_info1)
         print(new_user_info1[0])
         
+        """
+        Open User File as write and append new authantication
+        """
 
-        #Open User File as write and save new authantication
         users_info_file = open("user_info.txt","a+")
         users_info_file.write("\n"+new_user_info)
+
     elif short_code == "du":
         if display_users():
             print("Here is a list of all your contacts")

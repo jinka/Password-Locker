@@ -115,3 +115,33 @@ class Credentials:
         '''
 
         Credentials.accounts.remove(self)
+
+    @classmethod
+    def find_by_number(cls,number):
+        '''
+        Method that takes in a number and returns a contact that matches that number.
+
+        Args:
+            number: Phone number to search for
+        Returns :
+            Contact of person that matches the number.
+        '''
+
+        for account in cls.accounts:
+            if account.user_account_name == number:
+                return account
+
+    @classmethod
+    def account_exist(cls,number):
+        '''
+        Method that checks if a contact exists from the user list.
+        Args:
+            number: Phone number to search if it exists
+        Returns :
+            Boolean: True or false depending if the contact exists
+        '''
+        for account in cls.accounts:
+            if account.user_account_user == number:
+                    return True
+
+        return False

@@ -86,10 +86,10 @@ class TestUser(unittest.TestCase):
             '''
 
             self.new_user.save_user()
-            test_user = User("Test","user","Test User Name","0711223344","test@user.com") # new contact
+            test_user = User("Test","user","Test User Name","0711222333","test@user.com") # new contact
             test_user.save_user()
 
-            found_user = User.find_by_number("0711223344")
+            found_user = User.find_by_number("0711222333")
 
             self.assertEqual(found_user.email,test_user.email)
 
@@ -100,10 +100,10 @@ class TestUser(unittest.TestCase):
             '''
 
             self.new_user.save_user()
-            test_user = User("testUser","userPassword","Full Name","0711223344","test@user.com") # new contact
+            test_user = User("testUser","userPassword","Full Name","0711222333","test@user.com") # new contact
             test_user.save_user()
 
-            user_exists = User.user_exist("0711223344")
+            user_exists = User.user_exist("0711222333")
 
             self.assertTrue(user_exists)
 
@@ -190,8 +190,41 @@ class TestCredentials(unittest.TestCase):
             test_account = Credentials("Test","user","password") # new account
             test_account.save_account()
 
+            self.new_account.accounts
+
             self.new_account.delete_account()# Deleting a account object
             self.assertEqual(len(Credentials.accounts),1)
+
+
+
+    def test_find_account_by_number(self):
+            '''
+            test to check if we can find a account by phone number and display information
+            '''
+
+            self.new_account.save_account()
+            test_account = Credentials("Test","anum","password") # new account
+            test_account.save_account()
+
+            found_account = Credentials.find_by_number("anum")
+            
+            self.assertEqual(found_account,Credentials.find_by_number("anum"))
+
+
+
+    # Test if account exist
+    def test_account_exists(self):
+            '''
+            test to check if we can return a Boolean  if we cannot find the user.
+            '''
+
+            self.new_account.save_account()
+            test_account = Credentials("Viber","daudi","12345") # new account
+            test_account.save_account()
+
+            account_exists = Credentials.account_exist("daudi")
+
+            self.assertTrue(account_exists)
 
 
 
