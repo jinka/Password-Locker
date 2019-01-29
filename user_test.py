@@ -172,6 +172,15 @@ class TestCredentials(unittest.TestCase):
         self.new_account.save_account()
         self.assertEqual(len(Credentials.accounts),1)
                 
+    def test_save_multiple_accounts(self):
+        '''
+        test_save_multiple_accounts to check if we can save multiple accounts
+        objects to our accounts
+        '''
+        self.new_account.save_account()
+        test_account = Credentials("WhatsApp","daudi","password") # new account
+        test_account.save_account()
+        self.assertEqual(len(Credentials.accounts),2)
 
 if __name__ == '__main__':
     unittest.main()
