@@ -48,7 +48,6 @@ def display_users():
     return User.display_users()
 
 
-
 """
 Credentials
 """
@@ -74,14 +73,17 @@ def display_accounts():
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
+def find_account(name):
+    '''
+    Function that finds a user by name and returns the account
+    '''
+    return Credentials.find_by_number(name)
 
 """
 MAIN FUNCTION
 """ 
 def main():
-
         print("Thanks for Using Password Locker App.")
-
 
 while True:
 
@@ -99,6 +101,8 @@ while True:
         user_full_name=input("Enter Full Name :")
         phone_number = input("Enter Phone Number :")
         email = input("Enter Email :")
+
+        curUserName=user_name
 
         print("Thank you you info :" + user_name + ";" + user_password + ";" + user_full_name + ";"
         +phone_number + ";" + email)
@@ -144,13 +148,23 @@ while True:
         print(f"New User {user_account_name} {user_account_user} Created")
 
     elif options == 'ag':
+        print("Please enter your user name or create new one")
+        name=input()
+        account_user=find_account(name)        
+        print(account_user)
+
         print("Generating password for you")
         autoPassword=id_generator()
-        print({user_account_user})
-        print(autoPassword)
+        print("Your new Password Gemereated is: " + autoPassword)
+        print("To save you account please enter which application you use it:")
+        account_user_name = input()
+        print("Saving account credentials...")
+        save_accounts(create_account(account_user_name,account_user,autoPassword))
 
     elif options == 'cg':
-        print("Put own custom password")
+        print("Put your own custom password")
+        input()
+        customPassword=input("Enter Your Favorite Password")
     elif options == 'dc':
         print("Displaying Credential accounts")
         if display_accounts():
@@ -161,28 +175,14 @@ while True:
                         print(f"{account.user_account_name } {account.user_account_user} .....{account.user_account_password}")
 
                 print('\n')
-        else:
-                print('\n')
-                print("You dont seem to have any contacts saved yet")
-
-
-
-
-
-
-
-
-
-
-
-
     elif options == 'rc':
-        print("Delete Credential")
-    elif options == 'q':
-        print("Quit the app")
+        print("Deleting Credential")
 
+    elif options == 'q':
+        print("Quiting the app")
+        break
     else:
-        print("Thanks")
+        print("Invalid option, bye")
         break
 
 
