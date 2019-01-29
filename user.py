@@ -100,3 +100,10 @@ class Credentials:
         self.user_account_user = user_account_user
         self.user_account_password = user_account_password
 
+    def save_account(self):
+
+        '''
+        save_user method saves users objects into user_list
+        '''
+
+        Credentials.accounts.append(self)
