@@ -182,5 +182,18 @@ class TestCredentials(unittest.TestCase):
         test_account.save_account()
         self.assertEqual(len(Credentials.accounts),2)
 
+    def test_delete_account(self):
+            '''
+            test_delete_user to test if we can remove a account from our accounts
+            '''
+            self.new_account.save_account()
+            test_account = Credentials("Test","user","password") # new account
+            test_account.save_account()
+
+            self.new_account.delete_account()# Deleting a account object
+            self.assertEqual(len(Credentials.accounts),1)
+
+
+
 if __name__ == '__main__':
     unittest.main()
