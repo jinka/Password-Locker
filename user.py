@@ -82,18 +82,21 @@ class User: # Class for all User Information
     #     user_found = User.find_by_number(number)
     #     pyperclip.copy(user_found.email)
 
+# -------------------------------------------------------------------------------------------
 
-class Credentials: # CLass for all Credentials
+ # CLass for all Credentials
+class Credentials:
     """
     Class that generates new instances of Credentials accounts.
     """
     #EMpty Credentials list
-    credentials_list = []
+    accounts = []
 
-    def __init__(self,user_credential_name,user_credential_password,user_credential_application_name):    
+    def __init__(self,user_account_name,user_account_user,user_account_password):    
         """
         Class that generates new instances of users.
         """
-        self.user_credential_name = user_credential_name
-        self.user_credential_password = user_credential_password
-        self.user_credential_application_name = user_credential_application_name 
+        self.user_account_name = user_account_name
+        self.user_account_user = user_account_user
+        self.user_account_password = user_account_password
+

@@ -1,11 +1,12 @@
 # Importing the unittest module
 import unittest
-# Importing the User class
+# Importing the User classes
 from user import User
+from user import Credentials
 import pyperclip
 
 
-
+# Class User Test 
 class TestUser(unittest.TestCase):
 
     '''
@@ -124,6 +125,41 @@ class TestUser(unittest.TestCase):
 
     #     self.assertEqual(self.new_user.email,pyperclip.paste())
 
+
+
+
+class TestCredentials(unittest.TestCase):
+
+    '''
+    Test class that defines test cases for the credential class behaviours.
+
+    Args:
+        unittest.TestCase: TestCase class that helps in creating test cases
+    '''
+
+    #1
+    def setUp(self):
+        '''
+        Set up method to run before each test cases.
+        '''
+        # create user object
+        self.new_account = Credentials("WhatsApp","daudi","password")
+
+
+    def tearDown(self):
+            '''
+            tearDown method that does clean up after each test case has run.
+            '''
+            Credentials.accounts = []
+
+    def test_init(self):
+        '''
+        test_init test case to test if the object is initialized properly
+        '''
+
+        self.assertEqual(self.new_account.user_account_name,"WhatsApp")
+        self.assertEqual(self.new_account.user_account_user,"daudi")
+        self.assertEqual(self.new_account.user_account_password,"password")
 
 if __name__ == '__main__':
     unittest.main()
