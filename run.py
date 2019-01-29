@@ -148,9 +148,10 @@ while True:
         print(f"New User {user_account_name} {user_account_user} Created")
 
     elif options == 'ag':
-        print("Please enter your user name or create new one")
+        print("Please enter your user name or create new one to generate a password for you")
         name=input()
-        account_user=find_account(name)        
+        print(name)
+        account_user = find_account(name)        
         print(account_user)
 
         print("Generating password for you")
@@ -162,9 +163,16 @@ while True:
         save_accounts(create_account(account_user_name,account_user,autoPassword))
 
     elif options == 'cg':
-        print("Put your own custom password")
-        input()
+        print("Please enter your user name or create new one to enter a new passord")
+        name=input()
+        account_user=find_account(name)        
+        print(account_user)
         customPassword=input("Enter Your Favorite Password")
+        print(customPassword)
+        print("To save you account please enter which application you use it:")
+        account_user_name = input()
+        print("Saving account credentials...")
+        save_accounts(create_account(account_user_name,account_user,autoPassword))
     elif options == 'dc':
         print("Displaying Credential accounts")
         if display_accounts():
