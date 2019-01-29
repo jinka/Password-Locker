@@ -145,3 +145,11 @@ class Credentials:
                     return True
 
         return False
+
+
+    @classmethod
+    def display_accounts(cls):
+        '''
+        method that returns the accounts list
+        '''
+        return cls.accounts

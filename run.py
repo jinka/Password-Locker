@@ -1,8 +1,11 @@
 #!/usr/bin/env python3.6
 from user import User
+from user import Credentials
 import getpass
 import os
+import shutil
 os.system('setterm -background white -foreground black -store')
+
 def create_user(user_name,user_password,user_full_name,phone_number,email):
     '''
     Function to create a new user
@@ -42,24 +45,51 @@ def display_users():
     '''
     return User.display_users()
 
-# MAIN FUNCTION
+
+
+"""
+Credentials
+"""
+
+def create_account(user_account_name,user_account_user,user_account_password):
+    '''
+    Function to create a new account
+    '''
+    new_account= Credentials(user_account_name,user_account_user,user_account_password)
+    return new_account
+
+def save_accounts(account):
+        '''
+        Function to save account credential
+        '''
+        account.save_account()
+
+def display_accounts():
+    '''
+    Function that returns all the saved accounts
+    '''
+    return Credentials.display_accounts()
+
+
+"""
+MAIN FUNCTION
+""" 
 def main():
 
-    print("Welcome to Password Locker App.")
+        print("Thanks for Using Password Locker App.")
+
 
 while True:
-    print("*"*100)
-    print("For old user => ou - For new User => nu - Display users => du \
-    - To Find a User => fu - Create Credentials => cc - To Quit => qu")
-    print("*"*100)
-    short_code = input().lower()
-    if short_code == 'eu':
-        user_name = input("Enter User Name")
-        user_password = input("Enter USer Password")
 
-        # Open user file as read only
+    columns = shutil.get_terminal_size().columns
+    print("PASSWORD LOCKER APPLICATION".center(columns))
+    print("-"*220)
 
-    elif short_code == 'nu':
+    print("Login =>(l)Register=>(r) Store Credentials => (st) Generate Random Password =>(ag) Generate Custome Psssword=>(cg) DIsplay Credentials=>(dc) Delete Credential=>(rc) Quit=>(q)")    
+    options=input()
+
+    if options=="r":
+        print("Welcome")
         user_name = input("Enter user Name :")
         user_password = getpass.getpass('Enter your password :')
         user_full_name=input("Enter Full Name :")
@@ -87,24 +117,96 @@ while True:
 
         users_info_file = open("user_info.txt","a+")
         users_info_file.write("\n"+new_user_info)
+        users_info_file.close()
 
-    elif short_code == "du":
-        if display_users():
-            print("Here is a list of all your contacts")
-            print('\n')
-            for user in display_users():
-                print(f"{user.user_name} {user.user_full_name} .....{user.phone_number}")
+    elif options == 'l':
+        """
+        Open User File as read only and append new authantication
+        """
+        user_get_info_file = open("user_info.txt","r")
+        print("Store Old Credentials => st - Automatic Password Generator => ag - Custom Password Generator => cg Display accounts => dc Delete Credentials => rm Exit App q")
+    elif options == 'st':
+        print("stroring New Credentials")
+
+        user_account_name = input("Enter your application(ex.WhatsApp) :")
+        user_account_user=input("Enter User Name :")
+        user_account_password = getpass.getpass('Enter User password :')
+
+        # print("Thank you you info :" + user_name + ";" + user_password + ";" + user_full_name + ";"
+        # +phone_number + ";" + email)
+        save_accounts(create_account(user_account_name,user_account_user,user_account_password))
+        
+        print('\n')
+        print(f"New User {user_account_name} {user_account_user} Created")
+
+    elif options == 'ag':
+        print("Generate automatic password")
+    elif options == 'cg':
+        print("Put own custom password")
+    elif options == 'dc':
+        print("Displaying Credential accounts")
+        if display_accounts():
+                print("Here is a list of all your credential accounts")
+                print('\n')
+
+                for account in display_accounts():
+                        print(f"{account.user_account_name } {account.user_account_user} .....{account.user_account_password}")
+
                 print('\n')
         else:
-            print('\n')
-            print("Sorry no users")
+                print('\n')
+                print("You dont seem to have any contacts saved yet")
 
-    elif short_code == "qu":
-        print("Thanks")
 
-        break
+
+
+
+
+
+
+
+
+
+
+    elif options == 'rc':
+        print("Delete Credential")
+    elif options == 'q':
+        print("Quit the app")
+
     else:
-        print("Bad option, bye")
+        print("Thanks")
+        break
+
+
+    # print("For old user => ou - For new User => nu - Display users => du \
+    # - To Find a User => fu - Create Credentials => cc - To Quit => qu")
+    # print("*"*116)
+    # short_code = input().lower()
+    # if short_code == 'eu':
+    #     user_name = input("Enter User Name")
+    #     user_password = input("Enter USer Password")
+
+    #     # Open user file as read only
+
+    # elif short_code == 'nu':
+
+    # elif short_code == "du":
+    #     if display_users():
+    #         print("Here is a list of all your contacts")
+    #         print('\n')
+    #         for user in display_users():
+    #             print(f"{user.user_name} {user.user_full_name} .....{user.phone_number}")
+    #             print('\n')
+    #     else:
+    #         print('\n')
+    #         print("Sorry no users")
+
+    # elif short_code == "qu":
+    #     print("Thanks")
+
+    #     break
+    # else:
+    #     print("Bad option, bye")
  
 
 if __name__ == '__main__':

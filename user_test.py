@@ -226,7 +226,15 @@ class TestCredentials(unittest.TestCase):
 
             self.assertTrue(account_exists)
 
+    """
+    Dispaly account user 
+    """
+    def test_display_all_account(self):
+            '''
+            method that returns a list of all account saved
+            '''
 
+            self.assertEqual(Credentials.display_accounts(),Credentials.accounts)
 
 if __name__ == '__main__':
     unittest.main()
