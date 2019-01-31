@@ -71,13 +71,21 @@ def display_accounts():
     '''
     return Credentials.display_accounts()
 
-def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+def id_generator(size=11, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
+
 def find_account(name):
     '''
     Function that finds a user by name and returns the account
     '''
     return Credentials.find_by_number(name)
+
+def del_account(account):
+    '''
+    Function to delete a account
+    '''
+    account.account_dele()
+    
 
 """
 MAIN FUNCTION
@@ -151,8 +159,9 @@ while True:
         print("Please enter your user name or create new one to generate a password for you")
         name=input()
         print(name)
-        account_user = find_account(name)        
-        print(account_user)
+        account_user=name
+        # account_user = find_account(name)        
+        # print(account_user)
 
         print("Generating password for you")
         autoPassword=id_generator()
@@ -165,9 +174,11 @@ while True:
     elif options == 'cg':
         print("Please enter your user name or create new one to enter a new passord")
         name=input()
-        account_user=find_account(name)        
-        print(account_user)
+        account_user=name
+        # account_user=find_account(name)        
+        # print(account_user)
         customPassword=input("Enter Your Favorite Password")
+        autoPassword=customPassword
         print(customPassword)
         print("To save you account please enter which application you use it:")
         account_user_name = input()
