@@ -34,11 +34,11 @@ def find_user(number):
     '''
     return User.find_by_number(number)
 
-def check_existing_users(username):
+def check_existing_users(username,userpassword):
     '''
     Function that check if a user exists with that number and return a Boolean
     '''
-    return User.user_exist(username)
+    return User.user_exist(username,userpassword)
 
 
 def display_users():
@@ -142,11 +142,12 @@ while True:
         user_get_info_file = open("user_info.txt","r")
         """
         user_name = input("Enter user name")
-        found_user = check_existing_users(user_name)
-        if found_user:
+        user_password=input("Enter password")
+        found_user = check_existing_users(user_name,user_password)
+        if found_user and user_password:
             print("Successfully log")
         else:
-            print("Please check your user name")
+            print("User name or password not found")
         # print("Store Old Credentials => st - Automatic Password Generator => ag - Custom Password Generator => cg Display accounts => dc Delete Credentials => rm Exit App q")
     elif options == 'st':
         print("stroring New Credentials")

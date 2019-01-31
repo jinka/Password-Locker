@@ -27,3 +27,4 @@ jinka;jinkoos;Daud;0711;jj
 jinka;jinkoos;Daud Mohamed;0711;jjj
 jinka;jinkoos;Daud Mohamed Farah;0716761606;daud@gmail.com
 jinka;jinkoos;Daud Mohamw;0711;jjj
+jinka;jinkoos;0711111;071111;lll
