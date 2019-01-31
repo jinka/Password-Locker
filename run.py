@@ -34,11 +34,11 @@ def find_user(number):
     '''
     return User.find_by_number(number)
 
-def check_existing_users(number):
+def check_existing_users(username):
     '''
     Function that check if a user exists with that number and return a Boolean
     '''
-    return User.user_exist(number)
+    return User.user_exist(username)
 
 
 def display_users():
@@ -85,11 +85,11 @@ def del_account(account):
     Function to delete a account
     '''
     account.account_dele()
-    
+
 
 """
 MAIN FUNCTION
-""" 
+"""
 def main():
         print("Thanks for Using Password Locker App.")
 
@@ -99,7 +99,8 @@ while True:
     print("PASSWORD LOCKER APPLICATION".center(columns))
     print("-"*220)
 
-    print("Login =>(l)Register=>(r) Store Credentials => (st) Generate Random Password =>(ag) Generate Custome Psssword=>(cg) DIsplay Credentials=>(dc) Delete Credential=>(rc) Quit=>(q)")    
+
+    print("Login =>(l)Register=>(r) Store Credentials => (st) Generate Random Password =>(ag) Generate Custome Psssword=>(cg) DIsplay Credentials=>(dc) Delete Credential=>(rc) Quit=>(q)")
     options=input()
 
     if options=="r":
@@ -126,7 +127,7 @@ while True:
         new_user_info1=new_user_info.split(";")
         print(new_user_info1)
         print(new_user_info1[0])
-        
+
         """
         Open User File as write and append new authantication
         """
@@ -138,8 +139,14 @@ while True:
     elif options == 'l':
         """
         Open User File as read only and append new authantication
-        """
         user_get_info_file = open("user_info.txt","r")
+        """
+        user_name = input("Enter user name")
+        found_user = check_existing_users(user_name)
+        if found_user:
+            print("Successfully log")
+        else:
+            print("Please check your user name")
         # print("Store Old Credentials => st - Automatic Password Generator => ag - Custom Password Generator => cg Display accounts => dc Delete Credentials => rm Exit App q")
     elif options == 'st':
         print("stroring New Credentials")
@@ -151,7 +158,7 @@ while True:
         # print("Thank you you info :" + user_name + ";" + user_password + ";" + user_full_name + ";"
         # +phone_number + ";" + email)
         save_accounts(create_account(user_account_name,user_account_user,user_account_password))
-        
+
         print('\n')
         print(f"New User {user_account_name} {user_account_user} Created")
 
@@ -160,7 +167,7 @@ while True:
         name=input()
         print(name)
         account_user=name
-        # account_user = find_account(name)        
+        # account_user = find_account(name)
         # print(account_user)
 
         print("Generating password for you")
@@ -175,7 +182,7 @@ while True:
         print("Please enter your user name or create new one to enter a new passord")
         name=input()
         account_user=name
-        # account_user=find_account(name)        
+        # account_user=find_account(name)
         # print(account_user)
         customPassword=input("Enter Your Favorite Password")
         autoPassword=customPassword
@@ -234,7 +241,7 @@ while True:
     #     break
     # else:
     #     print("Bad option, bye")
- 
+
 
 if __name__ == '__main__':
 

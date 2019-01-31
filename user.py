@@ -56,7 +56,7 @@ class User: # Class for all User Information
                 return user
 
     @classmethod
-    def user_exist(cls,number):
+    def user_exist(cls,username):
         '''
         Method that checks if a contact exists from the user list.
         Args:
@@ -65,7 +65,7 @@ class User: # Class for all User Information
             Boolean: True or false depending if the contact exists
         '''
         for user in cls.user_list:
-            if user.phone_number == number:
+            if user.user_name == username:
                     return True
 
         return False
@@ -92,7 +92,7 @@ class Credentials:
     #EMpty Credentials list
     accounts = []
 
-    def __init__(self,user_account_name,user_account_user,user_account_password):    
+    def __init__(self,user_account_name,user_account_user,user_account_password):
         """
         Class that generates new instances of users.
         """
